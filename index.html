@@ -2161,7 +2161,18 @@
             <div class="field"><label for="waAccent">Accent Finish</label><select id="waAccent" onchange="toggleCustom(this,'waAccentCustom')"></select><input id="waAccentCustom" class="customBox" placeholder="Enter custom accent finish" /></div>
             <div class="field"><label for="waBackground">Background Style</label><select id="waBackground" onchange="toggleCustom(this,'waBackgroundCustom')"></select><input id="waBackgroundCustom" class="customBox" placeholder="Enter custom background" /></div>
             <div class="field"><label for="waOutputType">Output Format</label><select id="waOutputType" onchange="toggleCustom(this,'waOutputTypeCustom')"></select><input id="waOutputTypeCustom" class="customBox" placeholder="Enter custom output format" /></div>
-            <div class="field"><label for="waCharacter">Add Character</label><select id="waCharacter" onchange="toggleWordArtCharacterFields()"></select></div>
+            <div class="field"><label for="waCharacter">Character Use</label><select id="waCharacter" onchange="toggleWordArtCharacterFields()"></select><p class="field-note">Choose Auto if you want the generator to create a character whenever you describe one. Choose No Character only when you do not want a person included.</p></div>
+            <div class="field waCharacterField">
+              <label for="waReferenceUse">Reference Image Use</label>
+              <select id="waReferenceUse" onchange="toggleCustom(this,'waReferenceCustom');updateWordArtReferenceNote()"></select>
+              <input id="waReferenceCustom" class="customBox" placeholder="Describe exactly how to use the reference image" />
+              <p class="field-note">Choose No Reference Image for a fresh character, or choose a reference option when you are intentionally attaching an image for identity, hair, outfit, pose, style, or full-character consistency.</p>
+            </div>
+            <div class="field full waCharacterField">
+              <label for="waReferenceUpload">Optional Reference Image</label>
+              <input id="waReferenceUpload" type="file" accept="image/*" onchange="updateWordArtReferenceNote()" style="width:100%;padding:12px;border:1px dashed rgba(0,0,0,.18);border-radius:12px;background:#fff;" />
+              <div id="waReferenceNote" style="margin-top:8px;font-size:12px;line-height:1.5;color:#6c5d74;">If you select a reference-image option, choose the image here as a planning aid and attach that same image when you paste the generated prompt into ChatGPT or another image tool.</div>
+            </div>
             <div class="field waCharacterField"><label for="waCharacterStyle">Character Style</label><select id="waCharacterStyle" onchange="toggleCustom(this,'waCharacterStyleCustom')"></select><input id="waCharacterStyleCustom" class="customBox" placeholder="Enter custom character style" /></div>
             <div class="field waCharacterField"><label for="waFace">Face / Facial Features</label><select id="waFace" onchange="toggleCustom(this,'waFaceCustom')"></select><input id="waFaceCustom" class="customBox" placeholder="Enter custom facial features" /></div>
             <div class="field waCharacterField"><label for="waSkin">Skin Tone</label><select id="waSkin" onchange="toggleCustom(this,'waSkinCustom')"></select><input id="waSkinCustom" class="customBox" placeholder="Enter custom skin tone" /></div>
@@ -4773,20 +4784,20 @@ Create this as a brand-new original image from the written prompt and selected s
 
     function referenceImageRule(use, custom=''){
       const rules = {
-        'Use Face / Identity Reference':'Use the uploaded or clearly identified reference image for the person’s face and identity. Preserve recognizable facial structure and identity while allowing the selected theme, clothing, pose, scene, and design style to change.',
-        'Use Hairstyle Reference':'Use the uploaded or clearly identified reference image only for hairstyle, hair texture, length, color, and grooming details. Do not copy unrelated clothing, pose, background, or props unless separately requested.',
-        'Use Outfit Reference':'Use the uploaded or clearly identified reference image only for the clothing/outfit and fashion details. Preserve the selected character identity and do not copy unrelated background or pose details unless separately requested.',
-        'Use Pose Reference':'Use the uploaded or clearly identified reference image only for body pose, stance, hand placement, and camera/body orientation. Do not copy unrelated identity, hair, clothing, or background details unless separately requested.',
-        'Use Character Style Reference':'Use the uploaded or clearly identified reference image only as a character-rendering and visual-style reference. Match the overall illustration/rendering treatment while keeping the selected D9 organization, character details, clothing, theme, and scene accurate.',
-        'Use Full Character Reference':'Use the uploaded or clearly identified reference image as the full character reference. Preserve the same person’s face, hair, skin tone, body proportions, and recognizable identity while changing only the details explicitly requested in this prompt.',
-        'Use Previous Character for Consistency':'Maintain the same established character identity from the previously generated or clearly identified character image. Preserve the face, skin tone, hairstyle or grooming, body type, and overall identity consistently across new designs. Change only the clothing, pose, expression, scene, theme, props, or other elements specifically requested. Do not redesign the person into a different character.'
+        'Use Face / Identity Reference':'Use the image attached with this prompt as the reference image for the person’s face and identity. Preserve recognizable facial structure and identity while allowing the selected theme, clothing, pose, scene, and design style to change.',
+        'Use Hairstyle Reference':'Use the image attached with this prompt as the reference image only for hairstyle, hair texture, length, color, and grooming details. Do not copy unrelated clothing, pose, background, or props unless separately requested.',
+        'Use Outfit Reference':'Use the image attached with this prompt as the reference image only for the clothing/outfit and fashion details. Preserve the selected character identity and do not copy unrelated background or pose details unless separately requested.',
+        'Use Pose Reference':'Use the image attached with this prompt as the reference image only for body pose, stance, hand placement, and camera/body orientation. Do not copy unrelated identity, hair, clothing, or background details unless separately requested.',
+        'Use Character Style Reference':'Use the image attached with this prompt as the reference image only as a character-rendering and visual-style reference. Match the overall illustration/rendering treatment while keeping the selected D9 organization, character details, clothing, theme, and scene accurate.',
+        'Use Full Character Reference':'Use the image attached with this prompt as the reference image as the full character reference. Preserve the same person’s face, hair, skin tone, body proportions, and recognizable identity while changing only the details explicitly requested in this prompt.',
+        'Use Previous Character for Consistency':'Maintain the same established character identity from the previously generated character image that is attached with this prompt or explicitly identified in the current request. Preserve the face, skin tone, hairstyle or grooming, body type, and overall identity consistently across new designs. Change only the clothing, pose, expression, scene, theme, props, or other elements specifically requested. Do not redesign the person into a different character.'
       };
       if(use === 'Custom') return `REFERENCE IMAGE USE — CUSTOM:
 ${custom || 'Follow the user’s custom reference-image instructions exactly. Use only the parts of the reference that the user specifies.'}`;
       if(!use || use === 'No Reference Image') return noReferenceImageRule();
       return `REFERENCE IMAGE USE:
 ${rules[use] || rules['Use Full Character Reference']}
-If the required reference image is not actually available or clearly identified, do not invent one; create from the written character settings instead.`;
+When a reference-image option is selected, the attached image is intentionally part of this request and should be used only according to the selected reference purpose. Do not ask the user to upload or re-identify the image if an image is already attached with this prompt. If no image is attached at all, fall back to the written character settings instead of stopping the generation.`;
     }
 
     function referenceControlForOutput(id){
@@ -4795,6 +4806,7 @@ If the required reference image is not actually available or clearly identified,
         fOutput:['fReferenceUse','fReferenceCustom'],
         dgOutput:['dgReferenceUse','dgReferenceCustom'],
         stOutput:['stReferenceUse',null],
+        waOutput:['waReferenceUse','waReferenceCustom'],
         cOutput:['cReferenceUse','cReferenceCustom'],
         sassOutput:['sassReferenceUse','sassReferenceCustom'],
         mgOutput:['mgReferenceUse','mgReferenceCustom'],
@@ -6376,18 +6388,63 @@ Do not render a brick wall, masonry wall, graffiti wall, alley, building façade
     }
 
     function toggleWordArtCharacterFields(){
-      const show = document.getElementById('waCharacter')?.value === 'Yes — add a character';
+      const mode = document.getElementById('waCharacter')?.value || 'Auto — Create Character If Described';
+      const show = mode !== 'No character';
       document.querySelectorAll('.waCharacterField').forEach(el=>{
         el.style.display = show ? 'flex' : 'none';
       });
     }
 
+    function wordArtCharacterHasUserDetails(){
+      const detailIds = ['waCharacterDetails','waCharacterStyleCustom','waFaceCustom','waSkinCustom','waHairCustom','waBodyCustom','waExpressionCustom','waCharacterPlacementCustom','waCharacterPoseCustom'];
+      if(detailIds.some(id => (document.getElementById(id)?.value || '').trim())) return true;
+      const selectIds = ['waCharacterStyle','waFace','waSkin','waHair','waBody','waExpression','waCharacterPlacement','waCharacterPose'];
+      return selectIds.some(id => {
+        const value = document.getElementById(id)?.value || '';
+        return value && value !== '__none__' && value !== '__custom__';
+      });
+    }
+
+    function updateWordArtReferenceNote(){
+      const input=document.getElementById('waReferenceUpload');
+      const note=document.getElementById('waReferenceNote');
+      const use=document.getElementById('waReferenceUse')?.value || 'No Reference Image';
+      if(!note) return;
+      const count=input?.files?.length || 0;
+      if(use === 'No Reference Image' || use === '__none__' || use === 'None'){
+        note.textContent='No reference image selected. The Word Art Studio will create the character from the written settings.';
+      }else if(count > 0){
+        note.textContent='Reference image selected here. Attach this same image with the generated prompt so the image tool can use it directly without asking for another target.';
+      }else{
+        note.textContent='A reference-image mode is selected. Choose the image here as a planning aid, then attach that same image with the generated prompt.';
+      }
+    }
+
+    function wordArtReferenceDirection(){
+      const use=document.getElementById('waReferenceUse')?.value || 'No Reference Image';
+      const custom=document.getElementById('waReferenceCustom')?.value || '';
+      const count=document.getElementById('waReferenceUpload')?.files?.length || 0;
+      if(use === 'No Reference Image' || use === '__none__' || use === 'None') return noReferenceImageRule();
+      const uploadLine = count > 0
+        ? 'A reference image has been selected in the generator. When this prompt is used, attach that exact image with the request. Treat the attached image as the intended reference target and proceed without asking the user to identify another image.'
+        : 'This request intentionally uses a reference image. Use the image attached with this prompt as the intended reference target and proceed without asking the user to upload or identify another image.';
+      return `${referenceImageRule(use,custom)}\n${uploadLine}`;
+    }
+
     function wordArtCharacterDirection(){
-      if(document.getElementById('waCharacter')?.value !== 'Yes — add a character'){
-        return 'Do not include a character unless the user explicitly requests one.';
+      const mode = document.getElementById('waCharacter')?.value || 'Auto — Create Character If Described';
+      const hasDetails = wordArtCharacterHasUserDetails();
+      if(mode === 'No character'){
+        return 'Do not include a character.';
+      }
+      if(mode === 'Auto — Create Character If Described' && !hasDetails){
+        return 'No character has been described, so do not add one automatically.';
       }
       const org = resolveValue('waOrg','waOrgCustom');
-      return `Include a character as part of the word art composition. ${strictGenderOrganizationLock(org)}
+      const autoNote = mode === 'Auto — Create Character If Described'
+        ? 'The user described a character, so include that character even though Character Use is set to Auto.'
+        : 'Include the selected character as requested.';
+      return `${autoNote} Include a character as part of the word art composition. ${strictGenderOrganizationLock(org)}
 Character style: ${resolveValue('waCharacterStyle','waCharacterStyleCustom')}
 Character profile: ${resolveValue('waFace','waFaceCustom')}; ${resolveValue('waSkin','waSkinCustom')}; ${resolveValue('waHair','waHairCustom')}; ${resolveValue('waBody','waBodyCustom')}; expression: ${resolveValue('waExpression','waExpressionCustom')}
 Character placement: ${resolveValue('waCharacterPlacement','waCharacterPlacementCustom')}
@@ -6426,6 +6483,9 @@ Output format: ${resolveValue('waOutputType','waOutputTypeCustom')}
 
 CHARACTER:
 ${wordArtCharacterDirection()}
+
+REFERENCE IMAGE MODE:
+${wordArtReferenceDirection()}
 
 ORGANIZATION:
 ${compactOrganizationDirection(org)}
@@ -6476,7 +6536,7 @@ ${document.getElementById('waCustom').value.trim() || 'Keep the design bold, pol
       });
       if(Math.random() < 0.55) document.getElementById('waMaterial2').value = '__none__';
       if(Math.random() < 0.75) document.getElementById('waMaterial3').value = '__none__';
-      if(document.getElementById('waCharacter').value !== 'Yes — add a character'){
+      if(document.getElementById('waCharacter').value === 'No character'){
         document.getElementById('waCharacter').value = 'No character';
       }else{
         lockCharacterFieldsToOrganization(document.getElementById('waOrg').value, {poseId:'waCharacterPose'});
@@ -6486,6 +6546,7 @@ ${document.getElementById('waCustom').value.trim() || 'Keep the design bold, pol
         if(el) toggleCustom(el, `${id}Custom`);
       });
       toggleWordArtCharacterFields();
+      updateWordArtReferenceNote();
       updatePalettePreview('waOrg','waPalettePreview');
       generateWordArtPrompt();
     }
@@ -6497,7 +6558,7 @@ ${document.getElementById('waCustom').value.trim() || 'Keep the design bold, pol
       document.getElementById('waOutputType').value='Transparent PNG Element';
       document.getElementById('waMaterial2').value='__none__';
       document.getElementById('waMaterial3').value='__none__';
-      document.getElementById('waCharacter').value='No character';
+      document.getElementById('waCharacter').value='Auto — Create Character If Described';
       toggleWordArtCharacterFields();
       updatePalettePreview('waOrg','waPalettePreview');
     }
@@ -9641,7 +9702,14 @@ Deliver a finished frame template only, sized for ${size}, with crisp print-read
       setSelectOptions('waAccent', makeOptions(wordArtAccents));
       setSelectOptions('waBackground', makeOptions(wordArtBackgrounds));
       setSelectOptions('waOutputType', makeOptions(wordArtOutputs));
-      setSelectOptions('waCharacter', makeOptions(['No character','Yes — add a character']));
+      setSelectOptions('waCharacter', [
+        {value:'Auto — Create Character If Described',label:'Auto — Create Character If Described'},
+        {value:'No character',label:'No Character'},
+        {value:'Yes — add a character',label:'Yes — Add a Character'}
+      ]);
+      setSelectOptions('waReferenceUse', referenceImageOptions.filter(v=>v !== 'Custom').map(v=>({value:v,label:v})).concat([{value:'__custom__',label:'Custom'}]));
+      document.getElementById('waCharacter').value='Auto — Create Character If Described';
+      document.getElementById('waReferenceUse').value='No Reference Image';
       setSelectOptions('waCharacterStyle', makeOptions(artStyles));
       setSelectOptions('waFace', makeOptions(faceFeatures));
       setSelectOptions('waSkin', makeOptions(skinTones));
