@@ -1397,6 +1397,13 @@
             </div>
 
             <div class="field">
+              <label for="sReferenceUse">Reference Image Use</label>
+              <select id="sReferenceUse" onchange="toggleCustom(this,'sReferenceCustom')"></select>
+              <input id="sReferenceCustom" class="customBox" placeholder="Enter custom reference-image instructions" />
+              <p class="field-note">Choose No Reference Image for a fresh character, or use a reference option to keep a face, hair, outfit, pose, style, or full character consistent.</p>
+            </div>
+
+            <div class="field">
               <label for="sImageType">Image Style</label>
               <select id="sImageType" onchange="toggleCustom(this,'sImageTypeCustom')"></select>
               <input id="sImageTypeCustom" class="customBox" placeholder="Enter custom image type" />
@@ -1579,6 +1586,13 @@
               <select id="fOrg" onchange="toggleCustom(this,'fOrgCustom');updatePalettePreview('fOrg','fPalettePreview')"></select>
               <input id="fOrgCustom" class="customBox" placeholder="Enter custom fraternity-inspired direction" />
               <div id="fPalettePreview" class="swatches"></div>
+            </div>
+
+            <div class="field">
+              <label for="fReferenceUse">Reference Image Use</label>
+              <select id="fReferenceUse" onchange="toggleCustom(this,'fReferenceCustom')"></select>
+              <input id="fReferenceCustom" class="customBox" placeholder="Enter custom reference-image instructions" />
+              <p class="field-note">Choose No Reference Image for a fresh character, or use a reference option to keep a face, hair, outfit, pose, style, or full character consistent.</p>
             </div>
 
             <div class="field">
@@ -1776,6 +1790,13 @@
             </div>
 
             <div class="field">
+              <label for="dgReferenceUse">Reference Image Use</label>
+              <select id="dgReferenceUse" onchange="toggleCustom(this,'dgReferenceCustom')"></select>
+              <input id="dgReferenceCustom" class="customBox" placeholder="Enter custom reference-image instructions" />
+              <p class="field-note">For recurring dolls, choose Use Previous Character for Consistency to preserve the same face, skin tone, hair, body type, and identity.</p>
+            </div>
+
+            <div class="field">
               <label for="dgDollType">Doll Type</label>
               <select id="dgDollType" onchange="toggleCustom(this,'dgDollTypeCustom')"></select>
               <input id="dgDollTypeCustom" class="customBox" placeholder="Enter a custom doll type" />
@@ -1796,7 +1817,7 @@
             <div class="field full">
               <div style="padding:12px 14px;border:1px solid rgba(0,0,0,.08);border-radius:14px;background:rgba(255,255,255,.55);margin-bottom:4px;">
                 <div style="font-size:13px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px;">Character Options</div>
-                <div style="font-size:12px;color:#6e5f78;">Use these to customize the doll’s age range, skin tone, face, expression, hair or grooming, body type, clothing, shoes, and pose. Every dropdown also supports Custom.</div>
+                <div style="font-size:12px;color:#6e5f78;">Use these to customize the doll’s age range, skin tone, face, expression, body type, clothing, shoes, and pose. Women’s hairstyles and men’s hair/grooming styles now have their own separate dropdowns. Every dropdown also supports Custom.</div>
               </div>
             </div>
 
@@ -1825,10 +1846,15 @@
             </div>
 
             <div class="field">
-              <label for="dgHair">Hair / Grooming</label>
-              <div style="margin:-4px 0 8px;font-size:11px;color:#75677c;">Women and Men choices are separated in this dropdown.</div>
-              <select id="dgHair" onchange="toggleCustom(this,'dgHairCustom')"></select>
-              <input id="dgHairCustom" class="customBox" placeholder="Enter custom hair or grooming" />
+              <label for="dgWomenHair">Women’s Hair Style</label>
+              <select id="dgWomenHair" onchange="toggleCustom(this,'dgWomenHairCustom')"></select>
+              <input id="dgWomenHairCustom" class="customBox" placeholder="Enter a custom women’s hairstyle" />
+            </div>
+
+            <div class="field">
+              <label for="dgMenHair">Men’s Hair / Grooming Style</label>
+              <select id="dgMenHair" onchange="toggleCustom(this,'dgMenHairCustom')"></select>
+              <input id="dgMenHairCustom" class="customBox" placeholder="Enter a custom men’s hairstyle or grooming style" />
             </div>
 
             <div class="field">
@@ -2198,6 +2224,12 @@
             </div>
 
             <div class="field">
+              <label for="cReferenceUse">Reference Image Use</label>
+              <select id="cReferenceUse" onchange="toggleCustom(this,'cReferenceCustom')"></select>
+              <input id="cReferenceCustom" class="customBox" placeholder="Enter custom reference-image instructions" />
+            </div>
+
+            <div class="field">
               <label for="cCategory">Card Section</label>
               <select id="cCategory" onchange="toggleCustom(this,'cCategoryCustom');toggleBirthdayCardElements()"></select>
               <input id="cCategoryCustom" class="customBox" placeholder="Enter custom card section" />
@@ -2448,6 +2480,12 @@
             </div>
 
             <div class="field">
+              <label for="sassReferenceUse">Reference Image Use</label>
+              <select id="sassReferenceUse" onchange="toggleCustom(this,'sassReferenceCustom')"></select>
+              <input id="sassReferenceCustom" class="customBox" placeholder="Enter custom reference-image instructions" />
+            </div>
+
+            <div class="field">
               <label for="sassStyle">Sassy Saying Style</label>
               <select id="sassStyle" onchange="toggleCustom(this,'sassStyleCustom')"></select>
               <input id="sassStyleCustom" class="customBox" placeholder="Enter custom sassy saying style" />
@@ -2599,6 +2637,12 @@
             </div>
 
             <div class="field">
+              <label for="mgReferenceUse">Reference Image Use</label>
+              <select id="mgReferenceUse" onchange="toggleCustom(this,'mgReferenceCustom')"></select>
+              <input id="mgReferenceCustom" class="customBox" placeholder="Enter custom reference-image instructions" />
+            </div>
+
+            <div class="field">
               <label for="mgCoverType">Cover Type</label>
               <select id="mgCoverType"></select>
             </div>
@@ -2734,6 +2778,12 @@
               <select id="flOrg" onchange="toggleCustom(this,'flOrgCustom');updatePalettePreview('flOrg','flPalettePreview')"></select>
               <input id="flOrgCustom" class="customBox" placeholder="Enter custom organization direction" />
               <div id="flPalettePreview" class="swatches"></div>
+            </div>
+
+            <div class="field">
+              <label for="flReferenceUse">Reference Image Use</label>
+              <select id="flReferenceUse" onchange="toggleCustom(this,'flReferenceCustom')"></select>
+              <input id="flReferenceCustom" class="customBox" placeholder="Enter custom reference-image instructions" />
             </div>
 
             <div class="field">
@@ -3180,6 +3230,13 @@
             </div>
 
             <div class="field">
+              <label for="lgReferenceUse">Reference Image Use</label>
+              <select id="lgReferenceUse" onchange="toggleCustom(this,'lgReferenceCustom')"></select>
+              <input id="lgReferenceCustom" class="customBox" placeholder="Enter custom reference-image instructions" />
+              <p class="field-note">Use Previous Character for Consistency when continuing a family character across multiple keepsakes or cards.</p>
+            </div>
+
+            <div class="field">
               <label for="lgRelationship">Legacy Relationship</label>
               <select id="lgRelationship" onchange="toggleCustom(this,'lgRelationshipCustom')"></select>
               <input id="lgRelationshipCustom" class="customBox" placeholder="Enter custom family or legacy relationship" />
@@ -3311,6 +3368,12 @@
               <select id="evOrg" onchange="toggleCustom(this,'evOrgCustom');updatePalettePreview('evOrg','evPalettePreview')"></select>
               <input id="evOrgCustom" class="customBox" placeholder="Enter custom organization direction" />
               <div id="evPalettePreview" class="swatches"></div>
+            </div>
+
+            <div class="field">
+              <label for="evReferenceUse">Reference Image Use</label>
+              <select id="evReferenceUse" onchange="toggleCustom(this,'evReferenceCustom')"></select>
+              <input id="evReferenceCustom" class="customBox" placeholder="Enter custom reference-image instructions" />
             </div>
 
             <div class="field">
@@ -4691,9 +4754,67 @@ If the user explicitly provides or requests a different year or full date, use t
 Do NOT change historical or identity dates such as organization founding years, crossing years, membership years, graduation years, chapter founding dates, anniversaries tied to a specific historical year, or other dates that are clearly part of a person's or organization's history.`;
     }
 
+    const referenceImageOptions = [
+      'No Reference Image',
+      'Use Face / Identity Reference',
+      'Use Hairstyle Reference',
+      'Use Outfit Reference',
+      'Use Pose Reference',
+      'Use Character Style Reference',
+      'Use Full Character Reference',
+      'Use Previous Character for Consistency',
+      'Custom'
+    ];
+
+    function noReferenceImageRule(){
+      return `REFERENCE IMAGE USE:
+No reference image is selected for this request. Create a brand-new original image from the written prompt and selected settings. Do not use earlier conversation images as references unless the user explicitly changes the Reference Image Use option.`;
+    }
+
+    function referenceImageRule(use, custom=''){
+      const rules = {
+        'Use Face / Identity Reference':'Use the uploaded or clearly identified reference image for the person’s face and identity. Preserve recognizable facial structure and identity while allowing the selected theme, clothing, pose, scene, and design style to change.',
+        'Use Hairstyle Reference':'Use the uploaded or clearly identified reference image only for hairstyle, hair texture, length, color, and grooming details. Do not copy unrelated clothing, pose, background, or props unless separately requested.',
+        'Use Outfit Reference':'Use the uploaded or clearly identified reference image only for the clothing/outfit and fashion details. Preserve the selected character identity and do not copy unrelated background or pose details unless separately requested.',
+        'Use Pose Reference':'Use the uploaded or clearly identified reference image only for body pose, stance, hand placement, and camera/body orientation. Do not copy unrelated identity, hair, clothing, or background details unless separately requested.',
+        'Use Character Style Reference':'Use the uploaded or clearly identified reference image only as a character-rendering and visual-style reference. Match the overall illustration/rendering treatment while keeping the selected D9 organization, character details, clothing, theme, and scene accurate.',
+        'Use Full Character Reference':'Use the uploaded or clearly identified reference image as the full character reference. Preserve the same person’s face, hair, skin tone, body proportions, and recognizable identity while changing only the details explicitly requested in this prompt.',
+        'Use Previous Character for Consistency':'Maintain the same established character identity from the previously generated or clearly identified character image. Preserve the face, skin tone, hairstyle or grooming, body type, and overall identity consistently across new designs. Change only the clothing, pose, expression, scene, theme, props, or other elements specifically requested. Do not redesign the person into a different character.'
+      };
+      if(use === 'Custom') return `REFERENCE IMAGE USE — CUSTOM:
+${custom || 'Follow the user’s custom reference-image instructions exactly. Use only the parts of the reference that the user specifies.'}`;
+      if(!use || use === 'No Reference Image') return noReferenceImageRule();
+      return `REFERENCE IMAGE USE:
+${rules[use] || rules['Use Full Character Reference']}
+If the required reference image is not actually available or clearly identified, do not invent one; create from the written character settings instead.`;
+    }
+
+    function referenceControlForOutput(id){
+      const map = {
+        sOutput:['sReferenceUse','sReferenceCustom'],
+        fOutput:['fReferenceUse','fReferenceCustom'],
+        dgOutput:['dgReferenceUse','dgReferenceCustom'],
+        stOutput:['stReferenceUse',null],
+        cOutput:['cReferenceUse','cReferenceCustom'],
+        sassOutput:['sassReferenceUse','sassReferenceCustom'],
+        mgOutput:['mgReferenceUse','mgReferenceCustom'],
+        flOutput:['flReferenceUse','flReferenceCustom'],
+        lgOutput:['lgReferenceUse','lgReferenceCustom'],
+        evOutput:['evReferenceUse','evReferenceCustom']
+      };
+      const pair = map[id];
+      if(!pair) return '';
+      const use = document.getElementById(pair[0])?.value || 'No Reference Image';
+      const custom = pair[1] ? (document.getElementById(pair[1])?.value || '') : '';
+      return `
+
+${referenceImageRule(use, custom)}`;
+    }
+
     function putOutput(id, text){
       const box = document.getElementById(id);
-      const finalText = `${text}
+      const referenceRule = referenceControlForOutput(id);
+      const finalText = `${text}${referenceRule}
 
 ${programDateRule()}`;
       box.textContent = finalText;
@@ -5277,6 +5398,23 @@ Make the box contents visibly different for the selected theme. Keep every prop 
       showFeedback('Greek doll preset applied.');
     }
 
+    function greekDollHairDirection(org,type){
+      const o=String(org || '').toLowerCase();
+      const t=String(type || '').toLowerCase();
+      const womenHair=resolveValue('dgWomenHair','dgWomenHairCustom');
+      const menHair=resolveValue('dgMenHair','dgMenHairCustom');
+      if(o.includes('divine nine') || t.includes('unity') || t.includes('multi-doll')){
+        return `Women’s hair style: ${womenHair}\nMen’s hair / grooming style: ${menHair}`;
+      }
+      if(/alpha kappa alpha|delta sigma theta|zeta phi beta|sigma gamma rho/.test(o) || t.includes('sorority')){
+        return `Women’s hair style: ${womenHair}`;
+      }
+      if(/alpha phi alpha|kappa alpha psi|omega psi phi|phi beta sigma|iota phi theta/.test(o) || t.includes('fraternity')){
+        return `Men’s hair / grooming style: ${menHair}`;
+      }
+      return `Women’s hair style: ${womenHair}\nMen’s hair / grooming style: ${menHair}\nUse the hair option that matches the selected doll’s gender representation.`;
+    }
+
     function generateGreekDollPrompt(){
       const org=resolveValue('dgOrg','dgOrgCustom');
       const type=resolveValue('dgDollType','dgDollTypeCustom');
@@ -5293,7 +5431,7 @@ Age / vibe: ${resolveValue('dgAge','dgAgeCustom')}
 Skin tone: ${resolveValue('dgSkin','dgSkinCustom')}
 Face / facial features: ${resolveValue('dgFace','dgFaceCustom')}
 Expression: ${resolveValue('dgExpression','dgExpressionCustom')}
-Hair / grooming: ${resolveValue('dgHair','dgHairCustom')}
+${greekDollHairDirection(org,type)}
 Body type: ${resolveValue('dgBody','dgBodyCustom')}
 Pose: ${resolveValue('dgPose','dgPoseCustom')}
 
@@ -5330,7 +5468,7 @@ ${globalAestheticStandard()}`;
     }
 
     function randomizeGreekDoll(){
-      ['dgOrg','dgDollType','dgTheme','dgBoxStyle','dgAge','dgSkin','dgFace','dgExpression','dgHair','dgBody','dgClothing','dgShoes','dgProps','dgPose','dgRender','dgFormat'].forEach(id=>randomValidOption(document.getElementById(id)));
+      ['dgOrg','dgDollType','dgTheme','dgBoxStyle','dgAge','dgSkin','dgFace','dgExpression','dgWomenHair','dgMenHair','dgBody','dgClothing','dgShoes','dgProps','dgPose','dgRender','dgFormat'].forEach(id=>randomValidOption(document.getElementById(id)));
       document.getElementById('dgDetails').value='';
       updatePalettePreview('dgOrg','dgPalettePreview');
       showFeedback('Greek doll section randomized.');
@@ -6388,14 +6526,15 @@ Keep one consistent character identity across pose variations while changing the
         return 'No reference image is provided. Create an original character and complete sticker design automatically from the selected settings. Do not ask for an uploaded reference image.';
       }
       const instructions = {
-        'Face / Identity Reference':'Use the uploaded image as the face and identity reference while preserving the selected sticker style.',
-        'Hairstyle Reference':'Use the uploaded image only as the hairstyle reference.',
-        'Outfit Reference':'Use the uploaded image only as the outfit and fashion reference.',
-        'Pose Reference':'Use the uploaded image only as the pose reference.',
-        'Sticker Quality Reference':'Use the uploaded image only as a quality reference for sharpness, realism, polish, typography, die-cut finish, and commercial presentation.',
-        'Full Character Reference':'Use the uploaded image as the full character reference while preserving the selected organization and sticker settings.'
+        'Use Face / Identity Reference':'Use the uploaded image as the face and identity reference while preserving the selected sticker style.',
+        'Use Hairstyle Reference':'Use the uploaded image only as the hairstyle reference.',
+        'Use Outfit Reference':'Use the uploaded image only as the outfit and fashion reference.',
+        'Use Pose Reference':'Use the uploaded image only as the pose reference.',
+        'Use Character Style Reference':'Use the uploaded image only as a character style and quality reference for sharpness, realism, polish, typography, die-cut finish, and commercial presentation.',
+        'Use Full Character Reference':'Use the uploaded image as the full character reference while preserving the selected organization and sticker settings.',
+        'Use Previous Character for Consistency':'Use the previously generated or identified character as the continuing identity reference. Preserve face, skin tone, hair, body type, and overall identity across this new sticker design.'
       };
-      return instructions[use] || instructions['Sticker Quality Reference'];
+      return instructions[use] || referenceImageRule(use);
     }
 
     function generateStickerPrompt(){
@@ -8870,10 +9009,10 @@ ${cardOutputDirection()}.`;
         : `Create a ${wordCount} word bank using correctly spelled vocabulary that genuinely matches ${org || 'the selected topic'}${theme && theme !== 'None' ? ` and the ${theme} theme` : ''}. Never invent organization-specific terminology. Never borrow another D9 organization's terms, symbols, sayings, colors, founding year, or traditions.`;
       const characterProfile = hasCharacter ? `\nOPTIONAL CHARACTER:\nInclude the selected character as a decorative worksheet accent only. Do not place the character over the puzzle grid or word bank.\nFace: ${resolveValue('wsCharacterFace','wsCharacterFaceCustom')}\nSkin tone: ${resolveValue('wsCharacterSkin','wsCharacterSkinCustom')}\nHair / grooming: ${resolveValue('wsCharacterHair','wsCharacterHairCustom')}\nBody type: ${resolveValue('wsCharacterBody','wsCharacterBodyCustom')}\nExpression: ${resolveValue('wsCharacterExpression','wsCharacterExpressionCustom')}\nPose: ${resolveValue('wsCharacterPose','wsCharacterPoseCustom')}\nCharacter direction: ${characterMode}\n${autoCharacterCreationRule()}` : '';
       const answerRule = answerKey === 'Separate Answer Key Page'
-        ? `Create TWO separate printable pages: PAGE 1 is the clean word-search worksheet. PAGE 2 is the answer key using the identical grid, with every hidden word clearly highlighted or marked. Do not place the answer key on the puzzle page.`
-        : `Create the word-search worksheet only. Do not include an answer key.`;
+        ? `Create TWO separate IMAGE files: IMAGE 1 is the clean word-search worksheet. IMAGE 2 is the answer key using the identical grid, with every hidden word clearly highlighted or marked. Do not place the answer key on the puzzle image. Each output must be a finished PNG or JPG image, not a PDF or document.`
+        : `Create ONE finished PNG or JPG word-search worksheet image only. Do not include an answer key. Do not create a PDF or document.`;
       const orgRule = isD9 ? `\nD9 ACCURACY:\n${strictOrganizationLock(org)}\nDo not use official crests, shields, coats of arms, official seals, badges, medallions, or protected insignia.` : '';
-      const prompt = `Create a premium printable WORD SEARCH worksheet.
+      const prompt = `Create a premium WORD SEARCH worksheet as a finished IMAGE.
 
 WORD SEARCH SETTINGS:
 Organization / Topic: ${org || 'Custom / general'}
@@ -8897,6 +9036,9 @@ The actual worksheet should remain clean. Show ONLY the word-search title, the p
 Keep the puzzle grid large, readable, and visually dominant. Keep decorative elements around the margins so they never interfere with letters or word-bank readability.
 ${characterProfile}
 
+OUTPUT FORMAT:
+Create the finished word search as PNG or JPG image output. Do NOT create a PDF, DOCX, document, worksheet file, or multi-page PDF. If a separate answer key is selected, output TWO separate images: one puzzle image and one answer-key image.
+
 ANSWER KEY OUTPUT:
 ${answerRule}
 ${orgRule}
@@ -8905,7 +9047,7 @@ CUSTOMIZATION:
 ${customization || 'Use tasteful personalization only when it improves the selected theme. Do not add unnecessary text.'}
 
 QUALITY:
-Use polished, professional educational-resource quality with crisp typography, accurate spelling, clean spacing, strong print readability, balanced composition, and a premium store-ready finish. The puzzle and answer key must match exactly.`;
+Use polished, professional educational-resource quality with crisp typography, accurate spelling, clean spacing, strong print readability, balanced composition, and a premium store-ready finish. The puzzle and answer key must match exactly. Final delivery must remain image-based, not PDF-based.`;
       putOutput('wsOutput', prompt);
     }
 
@@ -9382,7 +9524,8 @@ Deliver a finished frame template only, sized for ${size}, with crisp print-read
       setSelectOptions('dgSkin', makeOptions(skinTones));
       setSelectOptions('dgFace', makeOptions(faceFeatures));
       setSelectOptions('dgExpression', makeOptions(facialExpressions));
-      setSelectOptions('dgHair', groupedHairGrooming);
+      setSelectOptions('dgWomenHair', makeOptions(hairStyles));
+      setSelectOptions('dgMenHair', makeOptions(groomingStyles));
       setSelectOptions('dgBody', makeOptions(bodyTypes));
       setSelectOptions('dgClothing', makeOptions(greekDollClothing));
       setSelectOptions('dgShoes', makeOptions(greekDollShoes));
@@ -9390,6 +9533,15 @@ Deliver a finished frame template only, sized for ${size}, with crisp print-read
       setSelectOptions('dgPose', makeOptions(poses));
       setSelectOptions('dgRender', makeOptions(greekDollRenderStyles));
       setSelectOptions('dgFormat', makeOptions(formats));
+      setSelectOptions('dgReferenceUse', makeOptions(referenceImageOptions));
+      setSelectOptions('sReferenceUse', makeOptions(referenceImageOptions));
+      setSelectOptions('fReferenceUse', makeOptions(referenceImageOptions));
+      setSelectOptions('cReferenceUse', makeOptions(referenceImageOptions));
+      setSelectOptions('sassReferenceUse', makeOptions(referenceImageOptions));
+      setSelectOptions('mgReferenceUse', makeOptions(referenceImageOptions));
+      setSelectOptions('flReferenceUse', makeOptions(referenceImageOptions));
+      setSelectOptions('lgReferenceUse', makeOptions(referenceImageOptions));
+      setSelectOptions('evReferenceUse', makeOptions(referenceImageOptions));
 
       setSelectOptions('evOrg', makeOptions(allOrgs));
       setSelectOptions('evEventType', makeOptions(eventTypes));
@@ -9509,7 +9661,7 @@ Deliver a finished frame template only, sized for ${size}, with crisp print-read
       setSelectOptions('stFinish', makeOptions(dedicatedStickerFinishes));
       setSelectOptions('stShadow', makeOptions(stickerShadows));
       setSelectOptions('stBackground', makeOptions(dedicatedStickerBackgrounds));
-      setSelectOptions('stReferenceUse', makeOptions(['No Reference Image','Face / Identity Reference','Hairstyle Reference','Outfit Reference','Pose Reference','Sticker Quality Reference','Full Character Reference']));
+      setSelectOptions('stReferenceUse', makeOptions(referenceImageOptions));
       setSelectOptions('stCharacter', makeOptions(['No character','Yes — add a character']));
       setSelectOptions('stCharacterStyle', makeOptions(artStyles));
       setSelectOptions('stFace', makeOptions(faceFeatures));
