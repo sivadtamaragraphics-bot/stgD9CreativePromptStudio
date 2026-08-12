@@ -4767,8 +4767,8 @@ Do NOT change historical or identity dates such as organization founding years, 
     ];
 
     function noReferenceImageRule(){
-      return `REFERENCE IMAGE USE:
-No reference image is selected for this request. Create a brand-new original image from the written prompt and selected settings. Do not use earlier conversation images as references unless the user explicitly changes the Reference Image Use option.`;
+      return `NEW IMAGE CREATION MODE:
+Create this as a brand-new original image from the written prompt and selected settings. Treat this as a fresh generation request and proceed directly with creation from the prompt.`;
     }
 
     function referenceImageRule(use, custom=''){
@@ -4806,6 +4806,7 @@ If the required reference image is not actually available or clearly identified,
       if(!pair) return '';
       const use = document.getElementById(pair[0])?.value || 'No Reference Image';
       const custom = pair[1] ? (document.getElementById(pair[1])?.value || '') : '';
+      if(!use || use === 'No Reference Image') return '';
       return `
 
 ${referenceImageRule(use, custom)}`;
@@ -6523,7 +6524,7 @@ Keep one consistent character identity across pose variations while changing the
     function stickerReferenceDirection(){
       const use = document.getElementById('stReferenceUse')?.value || 'No Reference Image';
       if(use === 'No Reference Image'){
-        return 'No reference image is provided. Create an original character and complete sticker design automatically from the selected settings. Do not ask for an uploaded reference image.';
+        return 'Create the sticker collection as a brand-new original image from the selected settings. Proceed directly with fresh generation.';
       }
       const instructions = {
         'Use Face / Identity Reference':'Use the uploaded image as the face and identity reference while preserving the selected sticker style.',
@@ -6558,7 +6559,7 @@ Background: ${dropdownValue('stBackground')}
 ORGANIZATION:
 ${compactOrganizationDirection(org)}
 
-REFERENCE IMAGE:
+${(document.getElementById('stReferenceUse')?.value || 'No Reference Image') === 'No Reference Image' ? 'CREATION MODE:' : 'REFERENCE IMAGE USE:'}
 ${stickerReferenceDirection()}
 
 TEXT:
